@@ -22,7 +22,7 @@ var orm = {
                 throw err;
             }
 
-            cb(result);
+            cb(result)
 
         });
 
