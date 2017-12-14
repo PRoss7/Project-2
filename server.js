@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
+var exphbs = require("express-handlebars")
 
 var PORT = process.env.PORT || 8080;
 
@@ -14,8 +15,16 @@ app.use(methodOverride("_method"));
 
 var routes = require("./controller/app_controller.js");
 
-app.use("/", routes);
 
+app.set("view engine", "handlebars")
+
+//app.use("/", routes);
+app.set("views", "./public/startbootstrap-grayscale-gh-pages/")
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }))
+app.get("/", function(req, res) {
+    res.render("partials/index")
+})
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
 
