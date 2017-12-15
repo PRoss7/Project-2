@@ -5,7 +5,14 @@ var connection = require("../config/connection.js");
 // Object for all our SQL statement functions.
 var orm = {
 
-    addMediaToWishlist: function(vals, cb) { //adds line into wishlist table 
+    allMedia: function(cb) {
+        //  "select * from wishlist"
+
+        cb( /* result of the query */ )
+
+    },
+
+    addMedia: function(vals, cb) { //adds line into wishlist table 
 
         var queryString = "INSERT INTO wishlist (Title, Rating, Genre, Media) VALUES (?, ?, ?, ?)";
 
@@ -14,13 +21,15 @@ var orm = {
                 throw err;
             }
 
+            cb(result)
+
         });
 
     },
 
 
 
-    moveMediaToViewed: function(id, cb) { //deletes media from "wishlist" table and adds it to "viewed" table
+    moveMedia: function(id, cb) { //deletes media from "wishlist" table and adds it to "viewed" table
         connection.query("SELECT * FROM wishlist WHERE id = ?", [id], function(err, result) {
 
             if (err) {
@@ -42,13 +51,13 @@ var orm = {
                         throw err;
                     }
 
-                    // cb(result);
+                    cb();
                 });
             })
         });
     },
 
-    deleteMediaFromWishlist: function(id) { //deletes media from wishlist table and adds it to the "deleted" table
+    deleteMedia: function(id) { //deletes media from wishlist table and adds it to the "deleted" table
 
         connection.query("SELECT * FROM wishlist WHERE id = ?", [id], function(err, result) {
 
