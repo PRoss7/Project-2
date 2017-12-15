@@ -1,12 +1,13 @@
 // Import the ORM to create functions that will interact with the database.
 
 var orm = require("../config/orm.js");
-
+console.log("in app");
 var media = {
 
     addMedia: function(media, cb) {
         orm.addMedia(media, function(res) {
             cb(res);
+
         });
     },
 
@@ -22,5 +23,6 @@ var media = {
         });
     },
 }
+
 
 module.exports = media;
