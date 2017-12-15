@@ -58,15 +58,15 @@
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Media
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">Movie</a>
+                                <ul id="searchDropdown" class="dropdown-menu">
+                                    <li data-category="movie">
+                                        <a>Movie</a>
                                     </li>
-                                    <li>
-                                        <a href="#">TV Show</a>
+                                    <li data-category="tvshow">
+                                        <a>TV Show</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Video Game</a>
+                                    <li data-category="videogame">
+                                        <a>Video Game</a>
                                     </li>
                                 </ul>
                             </div>
@@ -85,7 +85,7 @@
                 </div>
                 <br>
 
-                <button type="submit" id="addToList" class="btn btn-primary">Add to Wish List</button>
+                <button type="submit" disabled id="addToList" class="btn btn-primary">Add to Wish List</button>
 
             </div>
         </div>
