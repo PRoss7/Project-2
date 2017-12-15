@@ -1,23 +1,22 @@
 var connection = require("../config/connection.js");
 
-connection.connect(function(err) {
 
-    if (err) {
-        console.log("error connection: " + err.stack);
-        return;
-    }
 
-    console.log("connected as id: " + connection.threadId);
-
-});
-
+// Object for all our SQL statement functions.
 var orm = {
 
-    addMedia: function(media, cb) {
+    allMedia: function(cb) {
+        //  "select * from wishlist"
 
-        var queryString = "INSERT INTO wishlist VALUES ???";
-        connection.query(queryString, [media.title, media.rating, media.genre], function(err, result) {
+        cb( /* result of the query */ )
 
+    },
+
+    addMedia: function(vals, cb) { //adds line into wishlist table 
+
+        var queryString = "INSERT INTO wishlist (Title, Rating, Genre, Media) VALUES (?, ?, ?, ?)";
+
+        connection.query(queryString, vals, function(err, result) {
             if (err) {
                 throw err;
             }
@@ -28,65 +27,75 @@ var orm = {
 
     },
 
-    moveMedia: function(id, cb) {
+
+
+    moveMedia: function(id, cb) { //deletes media from "wishlist" table and adds it to "viewed" table
         connection.query("SELECT * FROM wishlist WHERE id = ?", [id], function(err, result) {
 
             if (err) {
                 throw err;
             }
-            var mediaToMove = result;
 
-            connection.query("INSERT INTO viewed (Title, Rating, Genre) VALUES (?, ?, ?)", [mediaToMove.title, media.ToMove.rating, mediaToMove.genre], function(err, result) {
+            var mediaToMove = result[0];
+            console.log(mediaToMove);
+            connection.query("INSERT INTO viewed (Title, Rating, Genre) VALUES (?, ?, ?)", [mediaToMove.Title, mediaToMove.Rating, mediaToMove.Genre], function(err, result) {
+
 
                 if (err) {
                     throw err;
                 }
 
-                connection.query("DELETE FROM wishlist WHERE id=?", [id], function(err, result) {
+                connection.query("DELETE FROM wishlist WHERE id = ?", [id], function(err, result) {
 
                     if (err) {
                         throw err;
                     }
 
-                    cb(result);
-
+                    cb();
                 });
-
-
-            });
-
+            })
         });
     },
 
-    deleteMedia: function(id, cb) {
+    deleteMedia: function(id) { //deletes media from wishlist table and adds it to the "deleted" table
 
         connection.query("SELECT * FROM wishlist WHERE id = ?", [id], function(err, result) {
 
             if (err) {
                 throw err;
             }
-            var mediaToMove = result;
 
-            connection.query("INSERT INTO deleted (Title, Rating, Genre) VALUES (?, ?, ?)", [mediaToMove.title, media.ToMove.rating, mediaToMove.genre], function(err, result) {
+            console.log(JSON.stringify(result, null, 2));
+
+            var mediaToMove = result[0];
+
+
+            connection.query("INSERT INTO deleted (Title, Rating, Genre) VALUES (?, ?, ?)", [mediaToMove.Title, mediaToMove.Rating, mediaToMove.Genre], function(err, result) {
 
                 if (err) {
                     throw err;
                 }
 
-                connection.query("DELETE FROM wishlist WHERE id=?", [id], function(err, result) {
+                connection.query("DELETE FROM wishlist WHERE id = ?", [id], function(err, result) {
 
                     if (err) {
                         throw err;
                     }
 
-                    cb(result);
-
+                    // cb(result);
                 });
-
-
             });
 
         });
     },
+
 
 };
+
+//testing area
+
+orm.deleteMediaFromWishlist(2);
+
+//orm.moveMediaToViewed(1);
+
+module.exports = orm;
