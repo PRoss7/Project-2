@@ -1,12 +1,17 @@
 function tplawesome(e, t) { res = e; for (var n = 0; n < t.length; n++) { res = res.replace(/\{\{(.*?)\}\}/g, function (e, r) { return t[n][r] }) } return res }
 
 $(function () {
+
+    var searchCategory;
+
+
     $("form").on("submit", function (e) {
         console.log("success");
         e.preventDefault();
         $("#results").empty();
         // prepare the request
         var request = gapi.client.youtube.search.list({
+
             part: "snippet",
             type: "video",
             q: encodeURIComponent($("#movieInput").val()).replace(/%20/g, "+"),
@@ -33,6 +38,22 @@ $(function () {
     });
 
     $(window).on("resize", resetVideoHeight);
+
+    $("#searchDropdown li").on("click", function () {
+
+        $("#addToList").removeAttr("disabled");
+        searchCategory = $(this).attr("data-category");
+
+        //alert(searchCategory);
+
+    });
+
+    $(".dropdown a").on("click", function () {
+
+        $("button", $(this).parent().parent().parent()).html($(this).html());
+
+    });
+
 });
 
 function resetVideoHeight() {

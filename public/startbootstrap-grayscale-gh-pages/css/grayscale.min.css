@@ -78,3 +78,7 @@ h2 {
     right: 15%;
     top: 15px;
 }
+
+.dropdown-menu a {
+    cursor: pointer;
+}
