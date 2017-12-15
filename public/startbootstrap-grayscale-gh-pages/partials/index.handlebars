@@ -41,19 +41,51 @@
 </header>
 
 <!-- Search Section -->
-<section id="search" class="content-section text-center">
+<section id="searchsection" class="content-section text-center">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
 
                 <h2>Search for a Movie, TV Show or Video Game</h2>
 
-                <div class="trailerDisplay"></div>
+                <div class="row">
 
-                <input type="input" id="movieInput">
-                <button type="submit" id="submit" class="btn">Search</button>
+                    <div class="col-md-6 col-md-offset-3">
+
+                        <form action="#">
+
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Media
+                                    <span class="caret"></span>
+                                </button>
+                                <ul id="searchDropdown" class="dropdown-menu">
+                                    <li data-category="movie">
+                                        <a>Movie</a>
+                                    </li>
+                                    <li data-category="tvshow">
+                                        <a>TV Show</a>
+                                    </li>
+                                    <li data-category="videogame">
+                                        <a>Video Game</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <input type="text" id="movieInput" placeholder="Type something..." autocomplete="off" class="form-control" />
+                            <br>
+
+                            <button type="submit" id="search" class="btn btn-danger">Search</button>
+
+                        </form>
+
+                        <div id="results"></div>
+
+                    </div>
+
+                </div>
                 <br>
-                <button type="submit" id="addToList" class="btn btn-primary">Add to Wish List</button>
+
+                <button type="submit" disabled id="addToList" class="btn btn-primary">Add to Wish List</button>
 
             </div>
         </div>
