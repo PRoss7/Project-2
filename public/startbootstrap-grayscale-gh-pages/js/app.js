@@ -71,16 +71,39 @@ function init() {
 
 $(function() {
 
+            $("#wishList").on("submit", function(event) {
+                // Make sure to preventDefault on a submit event.
+                event.preventDefault();
+
+                var newMedia = {
+                    Title: $("#").val().trim(),
+                    Rating: $("#").val().trim(),
+                    Genre: $("#").val().trim(),
+                    Media: $("#").val().trim()
+                };
+
+                // Send the POST request.
+                $.ajax("/media/add", {
+                    type: "POST",
+                    data: newMedia
+                }).then(
+                    function() {
+                        console.log("added to wishlist table");
+                        // Reload the page to get the updated list
+                        location.reload();
+                    }
+                );
+            });
 
             $("#addToViewed").on("submit", function(event) {
                 // Make sure to preventDefault on a submit event.
                 event.preventDefault();
 
                 var newMedia = {
-                    Title: $("").val().trim(),
-                    Rating: $("").val().trim(),
-                    Genre: $("").val().trim(),
-                    Media: $("").val().trim()
+                    Title: $("#").val().trim(),
+                    Rating: $("#").val().trim(),
+                    Genre: $("#").val().trim(),
+                    Media: $("#").val().trim()
                 };
 
                 // Send the POST request.
@@ -101,10 +124,10 @@ $(function() {
                 event.preventDefault();
 
                 var newMedia = {
-                    Title: $("").val().trim(),
-                    Rating: $("").val().trim(),
-                    Genre: $("").val().trim(),
-                    Media: $("").val().trim()
+                    Title: $("#").val().trim(),
+                    Rating: $("#").val().trim(),
+                    Genre: $("#").val().trim(),
+                    Media: $("#").val().trim()
                 };
 
                 // Send the POST request.
