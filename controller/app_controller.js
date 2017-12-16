@@ -40,8 +40,8 @@ module.exports = function(app) {
         })
     })
 
-    app.post("/media/:id/move", function(req, res) {
-        console.log("id to move " + req.params.id)
+    app.post("/media/:id/delete", function(req, res) {
+        console.log("id to delete " + req.params.id)
 
         models.deleteMedia(req.params.id, function() {
 
