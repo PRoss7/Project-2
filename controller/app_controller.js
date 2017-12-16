@@ -1,4 +1,6 @@
-var models = require("../models/app.js");
+    var models = require("../models/app.js");
+var omdb = require('omdb');
+const MovieDB = require('moviedb')('65df1022a70a9ad63fbfa028ad61d139');
 
 module.exports = function(app) {
 
@@ -27,6 +29,27 @@ module.exports = function(app) {
         })
 
     })
+
+
+    app.post("/search", function(req, res) {
+        MovieDB.searchMovie({ query: req.body.search }, (err, response) => {                    
+            if (err){
+                console.log(err)
+            }else{
+
+                res.status(200).json(response.results[0]);
+
+                /*
+                console.log(`Popularity:   ${response.results[0].popularity}
+                Title:   ${response.results[0].original_title}
+                Overview:  ${response.results[0].overview}
+                Date: ${response.results[0].release_date}`);
+                */              
+            }                  
+
+        });
+    });
+
 
     app.post("/media/:id/move", function(req, res) {
         console.log("id to move " + req.params.id)

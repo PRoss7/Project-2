@@ -1,3 +1,5 @@
+//var omdb = require('omdb');
+
 function tplawesome(e,t){res=e;for(var n=0;n<t.length;n++){res=res.replace(/\{\{(.*?)\}\}/g,function(e,r){return t[n][r]})}return res}
 
 $(function() {
@@ -13,9 +15,8 @@ $(function() {
        var request = gapi.client.youtube.search.list({
             part: "snippet",
             type: "video",
-            q: encodeURIComponent($("#movieInput").val()).replace(/%20/g, "+"),
-            maxResults: 1,
-            order: "viewCount"            
+            q: encodeURIComponent($("#mediaInput").val() + " trailer").replace(/%20/g, "+" ),
+            maxResults: 1,                       
        }); 
        // execute the request
        request.execute(function(response) {        
@@ -25,7 +26,7 @@ $(function() {
           $.each(results.items, function(index, item) {
             $.get("startbootstrap-grayscale-gh-pages/tpl/item.html", function(data){
               $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
-            });         
+            });           
           });
           //   $.get("tpl/item.html", function(data) {
           //       $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
@@ -53,6 +54,50 @@ $(function() {
 
     });
 
+     $("#addToList").on("click", function (event, data) {
+
+        $.ajax('/search', {
+          type: "POST",
+          dataType: 'json',
+          data: {
+            'search': $('#mediaInput').val().trim()
+          }
+        }).done(function(data) {
+            console.log("created new cat", data); //Movie data is here
+
+            var button1 = $('<button type = "button" id = "addToViewed" class= "btn btn-primary"> <i class="fa fa-check" aria-hidden="true"> </i> </button>');
+            var button2 = $('<button type="button" id="addToDelete" class="btn btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i> </button>');
+
+            button1.on('click', function() {
+              alert(data.id + ' was clicked');
+              $(this).parent().parent().appendTo($('.viewedTable tbody'))
+            });
+
+            button2.on('click', function() {
+              alert(data.id + ' was clicked');
+              $(this).parent().parent().appendTo($('.deletedTable tbody'))
+            });
+
+            var row = $("<tr></tr>");
+
+            row.append($("<td>" + data.id + "</td>"));
+            row.append($("<td>" + data.title + "</td>"));            
+            row.append($("<td>" + data.vote_average + "</td>"));
+            row.append($("<td>" + data.genre_ids[0] + "</td>")); // Need another API call to get genre name
+            row.append($("<td>" + searchCategory + "</td>"));
+            row.append($("<td>" + 'youtube link' + "</td>"));
+            row.append($(`<td></td>`).append(button1));
+            row.append($(`<td></td>`).append(button2));
+
+            $(".wishListTable tbody").append(row);
+
+            // Reload the page to get the updated list
+            //location.reload();
+          }
+        );
+
+     });
+
 });
 
 function resetVideoHeight() {
@@ -65,3 +110,12 @@ function init() {
         // yt api is ready
     });
 }
+
+/*
+for (var i = 0; i < $("#wishListTable").length; i++) {
+        var id = 1;
+
+
+
+       }
+*/
