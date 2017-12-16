@@ -1,20 +1,34 @@
+<<<<<<< HEAD
 function tplawesome(e, t) { res = e; for (var n = 0; n < t.length; n++) { res = res.replace(/\{\{(.*?)\}\}/g, function(e, r) { return t[n][r] }) } return res }
+=======
+function tplawesome(e, t) { res = e; for (var n = 0; n < t.length; n++) { res = res.replace(/\{\{(.*?)\}\}/g, function (e, r) { return t[n][r] }) } return res }
+>>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
 
-$(function() {
+$(function () {
 
     var searchCategory;
 
+    $("form").on("submit", function (e) {
+        console.log("success");
+        e.preventDefault();
+        $("#results").empty();
+        // prepare the request
+        var request = gapi.client.youtube.search.list({
 
+<<<<<<< HEAD
     $("form").on("submit", function(e) {
         console.log("success");
         e.preventDefault();
         $("#results").empty();
         // prepare the request
         var request = gapi.client.youtube.search.list({
+=======
+>>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
             part: "snippet",
             type: "video",
-            q: encodeURIComponent($("#movieInput").val()).replace(/%20/g, "+"),
+            q: encodeURIComponent($("#mediaInput").val() + " trailer").replace(/%20/g, "+"),
             maxResults: 1,
+<<<<<<< HEAD
             order: "viewCount"
         });
         // execute the request
@@ -26,6 +40,20 @@ $(function() {
                 $.get("startbootstrap-grayscale-gh-pages/tpl/item.html", function(data) {
                     $("#results").append(tplawesome(data, [{ "title": item.snippet.title, "videoid": item.id.videoId }]));
                 });
+=======
+        });
+        // execute the requests
+        request.execute(function (response) {
+            //console.log(response);
+            var results = response.result;
+            //$("#results").html("");
+            $.each(results.items, function (index, item) {
+                $.get("startbootstrap-grayscale-gh-pages/tpl/item.html", function (data) {
+                    $("#results").append(tplawesome(data, [{ "title": item.snippet.title, "videoid": item.id.videoId }]));
+
+                });
+
+>>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
             });
             //   $.get("tpl/item.html", function(data) {
             //       $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
@@ -38,8 +66,12 @@ $(function() {
 
     $(window).on("resize", resetVideoHeight);
 
-    $("#searchDropdown li").on("click", function() {
+    $("#searchDropdown li").on("click", function () {
 
+<<<<<<< HEAD
+=======
+        $("#search").removeAttr("disabled");
+>>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
         $("#addToList").removeAttr("disabled");
         searchCategory = $(this).attr("data-category");
 
@@ -47,11 +79,27 @@ $(function() {
 
     });
 
-    $(".dropdown a").on("click", function() {
+    $(".dropdown a").on("click", function () {
 
         $("button", $(this).parent().parent().parent()).html($(this).html());
 
     });
+
+    // $("#addToList").on("click", function (event, data) {
+
+    //     $("#wishListTable").find("tbody")
+    //         .append($("<tr>" + + "</tr>")
+    //             .append($("<tr>" + $("#mediaInput").val().trim() + "</tr>"))
+    //             .append($("<tr>" + + "</tr>"))
+    //             .append($("<tr>" + + "</tr>"))
+    //             .append($("<tr>" + searchCategory + "</tr>"))
+    //             .append($(`<td> <button type="button" id="addToViewed" class="btn btn-primary"> <i class="fa fa-check" aria-hidden="true"> </i> </button> </td>`)
+    //                 .append($(`<td> <button type="button" id="addToDelete" class="btn btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i> </button> </td>`)
+    //                 )
+    //             )
+    //         );
+
+    // });
 
 });
 
@@ -61,12 +109,13 @@ function resetVideoHeight() {
 
 function init() {
     gapi.client.setApiKey("AIzaSyA388q_XO6_LZrxMTfw41reoBplb--6tds");
-    gapi.client.load("youtube", "v3", function() {
+    gapi.client.load("youtube", "v3", function () {
         // yt api is ready
     });
 }
 
 
+<<<<<<< HEAD
 
 
 $(function() {
@@ -144,3 +193,5 @@ $(function() {
 
             });
         }
+=======
+>>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
