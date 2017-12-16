@@ -1,6 +1,6 @@
 # Project-2
 
-  ![Website Preview](public/screenshot.png)
+  ![Website Preview](public/screenshot.png "description")
 
 Search for a Movie, TV Show, or Video Game you might be interested in!
 
