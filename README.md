@@ -1,5 +1,7 @@
 # Project-2
 
+![alt tag](C:\Users\prest\Desktop\Project-2\public\screenshot.png)
+
 Search for a Movie, TV Show, or Video Game you might be interested in!
 
 If you think you might want to watch or play it, you can add it to your wish list and you'll never forget what you've been wanting to watch or play!
