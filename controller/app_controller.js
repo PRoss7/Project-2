@@ -14,7 +14,7 @@ module.exports = function(app) {
              * }
              */
 
-        console.log(JSON.stringify(media, null, 2))
+        //console.log(JSON.stringify(media, null, 2))
 
         var mediaToReplacePlaceholders = [
             body.Title, body.Rating, body.Genre, body.Media
@@ -23,6 +23,8 @@ module.exports = function(app) {
         models.addMedia(mediaToReplacePlaceholders, function(result) {
 
             res.json(result)
+                //res.redirect
+                //res.render("templste",{})
 
         })
 
