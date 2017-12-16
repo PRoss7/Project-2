@@ -4,7 +4,6 @@ $(function () {
 
     var searchCategory;
 
-
     $("form").on("submit", function (e) {
         console.log("success");
         e.preventDefault();
@@ -14,11 +13,10 @@ $(function () {
 
             part: "snippet",
             type: "video",
-            q: encodeURIComponent($("#movieInput").val()).replace(/%20/g, "+"),
+            q: encodeURIComponent($("#mediaInput").val() + " trailer").replace(/%20/g, "+"),
             maxResults: 1,
-            order: "viewCount"
         });
-        // execute the request
+        // execute the requests
         request.execute(function (response) {
             //console.log(response);
             var results = response.result;
@@ -26,7 +24,9 @@ $(function () {
             $.each(results.items, function (index, item) {
                 $.get("startbootstrap-grayscale-gh-pages/tpl/item.html", function (data) {
                     $("#results").append(tplawesome(data, [{ "title": item.snippet.title, "videoid": item.id.videoId }]));
+
                 });
+
             });
             //   $.get("tpl/item.html", function(data) {
             //       $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
@@ -41,6 +41,7 @@ $(function () {
 
     $("#searchDropdown li").on("click", function () {
 
+        $("#search").removeAttr("disabled");
         $("#addToList").removeAttr("disabled");
         searchCategory = $(this).attr("data-category");
 
@@ -54,6 +55,22 @@ $(function () {
 
     });
 
+    // $("#addToList").on("click", function (event, data) {
+
+    //     $("#wishListTable").find("tbody")
+    //         .append($("<tr>" + + "</tr>")
+    //             .append($("<tr>" + $("#mediaInput").val().trim() + "</tr>"))
+    //             .append($("<tr>" + + "</tr>"))
+    //             .append($("<tr>" + + "</tr>"))
+    //             .append($("<tr>" + searchCategory + "</tr>"))
+    //             .append($(`<td> <button type="button" id="addToViewed" class="btn btn-primary"> <i class="fa fa-check" aria-hidden="true"> </i> </button> </td>`)
+    //                 .append($(`<td> <button type="button" id="addToDelete" class="btn btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i> </button> </td>`)
+    //                 )
+    //             )
+    //         );
+
+    // });
+
 });
 
 function resetVideoHeight() {
@@ -66,3 +83,5 @@ function init() {
         // yt api is ready
     });
 }
+
+

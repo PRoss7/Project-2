@@ -30,8 +30,8 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h1 class="brand-heading">Media Master</h1>
-                    <p class="intro-text">A free app to search for trailers for Movies, TV Shows or Video Game you want to watch or play.</p>
-                    <a href="#search" class="btn btn-circle js-scroll-trigger">
+                    <p class="intro-text">A free app to search for trailers for Movies, TV Shows or Video Games you want to watch or play.</p>
+                    <a href="#searchsection" class="btn btn-circle js-scroll-trigger">
                         <i class="fa fa-angle-double-down animated"></i>
                     </a>
                 </div>
@@ -71,10 +71,10 @@
                                 </ul>
                             </div>
 
-                            <input type="text" id="movieInput" placeholder="Type something..." autocomplete="off" class="form-control" />
+                            <input type="text" id="mediaInput" placeholder="Type something..." autocomplete="off" class="form-control" />
                             <br>
 
-                            <button type="button" id="search" class="btn btn-danger" value="search">Search</button>
+                            <button type="submit" disabled id="search" class="btn btn-danger" value="search">Search</button>
 
                         </form>
 
@@ -107,34 +107,11 @@
                         <th scope="col">Rating</th>
                         <th scope="col">Genre</th>
                         <th scope="col">Media</th>
-                        <th scope="col">Link</th>
                         <th scope="col">Add to Viewed</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-
-                        <td class="w1"></td>
-                        <td class="w1"></td>
-                        <td class="w1"></td>
-                        <td class="w1"></td>
-                        <td class="w1"></td>
-                        <td class="w1"></td>
-
-                        <td>
-                            <button type="button" id="addToViewed" class="btn btn-primary">
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                            </button>
-                        </td>
-
-                        <td>
-                            <button type="button" id="addToDelete" class="btn btn-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </td>
-
-                    </tr>
 
                 </tbody>
             </table>
