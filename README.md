@@ -1,6 +1,6 @@
 # Project-2
 
-<img src="../Project-2/public/screenshot.png">
+<img src="../public/screenshot.png">
 
 Search for a Movie, TV Show, or Video Game you might be interested in!
 
