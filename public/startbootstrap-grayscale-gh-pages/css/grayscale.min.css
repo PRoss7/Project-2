@@ -32,13 +32,26 @@ h2 {
     opacity: .6;    
 }
 
+tr{
+    color: red;
+    font-weight: bold;
+    background-color: white;
+    opacity: .8;
+}
+
 .wish {
     color: black;
 }
 
 .wishListTable {
-    color: black;
+    color: black;    
 }
+
+.w1 {
+    color: red;
+    font-weight: bold;
+}
+
 
 #deleted-section {
     width: 100%;

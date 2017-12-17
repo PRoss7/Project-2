@@ -1,4 +1,4 @@
-    var models = require("../models/app.js");
+var models = require("../models/app.js");
 var omdb = require('omdb');
 const MovieDB = require('moviedb')('65df1022a70a9ad63fbfa028ad61d139');
 
