@@ -23,13 +23,10 @@
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.10",
-<<<<<<< HEAD
     "moviedb": "^0.2.10",
     "mysql": "^2.15.0",
-    "omdb": "^0.8.0"
-=======
+    "omdb": "^0.8.0",
     "mysql": "^2.15.0",
     "style-loader": "^0.19.1"
->>>>>>> f2bdd311177223ebf184faf3543a0614366a0146
   }
 }

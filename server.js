@@ -1,15 +1,10 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-<<<<<<< HEAD
-var exphbs = require("express-handlebars"); 	
-=======
-var exphbs = require("express-handlebars")
-<<<<<<< HEAD
-=======
 
->>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
->>>>>>> f2bdd311177223ebf184faf3543a0614366a0146
+var exphbs = require("express-handlebars"); 	
+
+var exphbs = require("express-handlebars")
 var PORT = process.env.PORT || 8080;
 
 var app = express();
@@ -37,20 +32,12 @@ app.get("/", function (req, res) {
 
 app.listen(PORT, function () {
     console.log("App listening on PORT: " + PORT);
-<<<<<<< HEAD
+
 
     //testing area
 
-<<<<<<< HEAD
 //    router.post();
-=======
     // router.post();
 
 
-
-
-
-=======
->>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
->>>>>>> f2bdd311177223ebf184faf3543a0614366a0146
 });

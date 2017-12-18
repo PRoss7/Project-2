@@ -94,11 +94,11 @@ var orm = {
 
 //testing area
 
-<<<<<<< HEAD
+
 //orm.deleteMediaFromWishlist(2);
-=======
+
 // orm.deleteMediaFromWishlist(2);
->>>>>>> f2bdd311177223ebf184faf3543a0614366a0146
+
 
 //orm.moveMediaToViewed(1);
 

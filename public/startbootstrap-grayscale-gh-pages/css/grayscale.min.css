@@ -27,7 +27,6 @@
     left: 35%;
     bottom: 20px;
 }
-
 h2 {
     text-transform: none;
     opacity: .6;    
@@ -72,10 +71,7 @@ tr{
     padding: .5px;
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> f2bdd311177223ebf184faf3543a0614366a0146
 #search {
     position: relative;
     left: 55%;
@@ -96,12 +92,4 @@ tr{
 
 .dropdown-menu a {
     cursor: pointer;
-}
-
-#results {
-    margin-top: 20px;
-    display: inline-block;
-    text-align: center;
-    position: relative;
-    left: 12.5%;
 }
