@@ -1,7 +1,7 @@
 {
   "name": "project-2",
   "version": "1.0.0",
-  "description": "",
+  "description": "![Website Preview](public/screenshot.png \"description\")",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -26,7 +26,7 @@
     "moviedb": "^0.2.10",
     "mysql": "^2.15.0",
     "omdb": "^0.8.0",
-    "mysql": "^2.15.0",
     "style-loader": "^0.19.1"
-  }
+  },
+  "devDependencies": {}
 }

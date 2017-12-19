@@ -93,3 +93,11 @@ tr{
 .dropdown-menu a {
     cursor: pointer;
 }
+
+#results {
+    margin-top: 20px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    left: 13%;
+}
