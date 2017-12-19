@@ -92,9 +92,9 @@ $(function () {
             mediaId++;
             row.append($("<td>" + data.title + "</td>"));
             row.append($("<td>" + data.vote_average + "/10" + "</td>"));
-            row.append($("<td>" + data.genre_ids[0] + "</td>")); // Need another API call to get genre name
+            //row.append($("<td>" + data.genre_ids[0] + "</td>")); // Need another API call to get genre name
             row.append($("<td>" + searchCategory + "</td>"));
-            row.append($("<td>" + 'youtube link' + "</td>"));
+            //row.append($("<td>" + 'youtube link' + "</td>"));
             row.append($(`<td></td>`).append(button1));
             row.append($(`<td></td>`).append(button2));
 
