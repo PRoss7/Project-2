@@ -27,10 +27,16 @@
     left: 35%;
     bottom: 20px;
 }
-
 h2 {
     text-transform: none;
     opacity: .6;    
+}
+
+tr{
+    color: red;
+    font-weight: bold;
+    background-color: white;
+    opacity: .8;
 }
 
 .wish {
@@ -38,8 +44,14 @@ h2 {
 }
 
 .wishListTable {
-    color: black;
+    color: black;    
 }
+
+.w1 {
+    color: red;
+    font-weight: bold;
+}
+
 
 #deleted-section {
     width: 100%;
@@ -58,6 +70,7 @@ h2 {
     height: 30px;
     padding: .5px;
 }
+
 
 #search {
     position: relative;
@@ -79,12 +92,4 @@ h2 {
 
 .dropdown-menu a {
     cursor: pointer;
-}
-
-#results {
-    margin-top: 20px;
-    display: inline-block;
-    text-align: center;
-    position: relative;
-    left: 12.5%;
 }

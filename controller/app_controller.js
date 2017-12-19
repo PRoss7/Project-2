@@ -1,4 +1,6 @@
 var models = require("../models/app.js");
+var omdb = require('omdb');
+const MovieDB = require('moviedb')('65df1022a70a9ad63fbfa028ad61d139');
 
 module.exports = function(app) {
 
@@ -14,7 +16,7 @@ module.exports = function(app) {
              * }
              */
 
-        //console.log(JSON.stringify(media, null, 2))
+        console.log(JSON.stringify(media, null, 2))
 
         var mediaToReplacePlaceholders = [
             body.Title, body.Rating, body.Genre, body.Media
@@ -23,19 +25,17 @@ module.exports = function(app) {
         models.addMedia(mediaToReplacePlaceholders, function(result) {
 
             res.json(result)
-                //res.redirect
-                //res.render("templste",{})
 
         })
 
     })
+
 
     app.post("/search", function(req, res) {
         MovieDB.searchMovie({ query: req.body.search }, (err, response) => {
             if (err) {
                 console.log(err)
             } else {
-
                 res.status(200).json(response.results[0]);
 
                 /*
@@ -45,7 +45,6 @@ module.exports = function(app) {
                 Date: ${response.results[0].release_date}`);
                 */
             }
-
         });
     });
 
@@ -59,8 +58,11 @@ module.exports = function(app) {
         })
     })
 
+
     app.post("/media/:id/delete", function(req, res) {
         console.log("id to delete " + req.params.id)
+
+
 
         models.deleteMedia(req.params.id, function() {
 
@@ -68,5 +70,9 @@ module.exports = function(app) {
 
         })
     })
+
+
+
+
 
 }
