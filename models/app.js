@@ -5,20 +5,20 @@ var orm = require("../config/orm.js");
 var media = {
 
     addMedia: function(media, cb) {
-        orm.addMediaToWishlist(media, function(res) {
+        orm.addMedia(media, function(res) {
             cb(res);
 
         });
     },
 
     moveMedia: function(id, cb) {
-        orm.moveMediaToViewed(id, function(res) {
+        orm.moveMedia(id, function(res) {
             cb(res);
         });
     },
 
     deleteMedia: function(id, cb) {
-        orm.deleteMediaFromWishlist(id, function(res) {
+        orm.deleteMedia(id, function(res) {
             cb(res);
         });
     },

@@ -38,12 +38,12 @@ module.exports = function(app) {
 
                 res.status(200).json(response.results[0]);
 
-                /*
-                console.log(`Popularity:   ${response.results[0].popularity}
-                Title:   ${response.results[0].original_title}
-                Overview:  ${response.results[0].overview}
-                Date: ${response.results[0].release_date}`);
-                */
+
+                // console.log(`Popularity:   ${response.results[0].popularity}
+                // Title:   ${response.results[0].original_title}
+                // Overview:  ${response.results[0].overview}
+                // Date: ${response.results[0].release_date}`);
+
             }
 
         });

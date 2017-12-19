@@ -85,7 +85,7 @@ function init() {
 };
 
 $(document).ready(function() {
-    $("#addToList").click(function() {
+    $("#addToList").click(function() { //adds to wishlist table
         event.preventDefault();
         console.log("wishlist button fired");
         //mediaInput is placeholder for OMBD object
@@ -97,7 +97,7 @@ $(document).ready(function() {
         };
 
         console.log(newMedia);
-        $.ajax("/media/add", { //route error 500
+        $.ajax("/media/add", {
             type: "POST",
             data: newMedia
         }).then(
@@ -110,83 +110,53 @@ $(document).ready(function() {
     });
 });
 
-//below doesn't work; adding to code above this comment
+//below this line may not work
 
+$("#addToViewed").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
 
+    var newMedia = {
+        Title: $("#").val().trim(),
+        Rating: $("#").val().trim(),
+        Genre: $("#").val().trim(),
+        Media: $("#").val().trim()
+    };
 
+    // Send the POST request.
+    $.ajax("/media/:id/move", {
+        type: "POST",
+        data: newMedia
+    }).then(
+        function() {
+            console.log("added to viewed table");
+            // Reload the page to get the updated list
+            location.reload();
+        }
+    );
+});
 
-$(function() {
+$("#deleted-section").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
 
-    $("#wishList").on("submit", function(event) {
-        // Make sure to preventDefault on a submit event.
-        event.preventDefault();
+    var newMedia = {
+        Title: $("#").val().trim(),
+        Rating: $("#").val().trim(),
+        Genre: $("#").val().trim(),
+        Media: $("#").val().trim()
+    };
 
-        var newMedia = {
-            Title: $("#").val().trim(),
-            Rating: $("#").val().trim(),
-            Genre: $("#").val().trim(),
-            Media: $("#").val().trim()
-        };
+    // Send the POST request.
+    $.ajax("/media/:id/delete", {
+        type: "POST",
+        data: newMedia
+    }).then(
+        function() {
+            console.log("deleted from wishlist table");
+            // Reload the page to get the updated list
+            location.reload();
+        }
+    );
 
-        // Send the POST request.
-        $.ajax("/media/add", {
-            type: "POST",
-            data: newMedia
-        }).then(
-            function() {
-                console.log("added to wishlist table");
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
-    });
-
-    $("#addToViewed").on("submit", function(event) {
-        // Make sure to preventDefault on a submit event.
-        event.preventDefault();
-
-        var newMedia = {
-            Title: $("#").val().trim(),
-            Rating: $("#").val().trim(),
-            Genre: $("#").val().trim(),
-            Media: $("#").val().trim()
-        };
-
-        // Send the POST request.
-        $.ajax("/media/:id/move", {
-            type: "POST",
-            data: newMedia
-        }).then(
-            function() {
-                console.log("added to viewed table");
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
-    });
-
-    $("#deleted-section").on("submit", function(event) {
-        // Make sure to preventDefault on a submit event.
-        event.preventDefault();
-
-        var newMedia = {
-            Title: $("#").val().trim(),
-            Rating: $("#").val().trim(),
-            Genre: $("#").val().trim(),
-            Media: $("#").val().trim()
-        };
-
-        // Send the POST request.
-        $.ajax("/media/:id/delete", {
-            type: "POST",
-            data: newMedia
-        }).then(
-            function() {
-                console.log("deleted from wishlist table");
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
-
-    });
 });
