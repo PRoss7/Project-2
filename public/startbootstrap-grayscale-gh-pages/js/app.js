@@ -1,37 +1,22 @@
-<<<<<<< HEAD
 function tplawesome(e, t) { res = e; for (var n = 0; n < t.length; n++) { res = res.replace(/\{\{(.*?)\}\}/g, function(e, r) { return t[n][r] }) } return res }
-=======
-function tplawesome(e, t) { res = e; for (var n = 0; n < t.length; n++) { res = res.replace(/\{\{(.*?)\}\}/g, function (e, r) { return t[n][r] }) } return res }
->>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
 
-$(function () {
+$(function() {
 
     var searchCategory;
 
-    $("form").on("submit", function (e) {
-        console.log("success");
-        e.preventDefault();
-        $("#results").empty();
-        // prepare the request
-        var request = gapi.client.youtube.search.list({
-
-<<<<<<< HEAD
     $("form").on("submit", function(e) {
         console.log("success");
         e.preventDefault();
         $("#results").empty();
         // prepare the request
         var request = gapi.client.youtube.search.list({
-=======
->>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
+
             part: "snippet",
             type: "video",
             q: encodeURIComponent($("#mediaInput").val() + " trailer").replace(/%20/g, "+"),
             maxResults: 1,
-<<<<<<< HEAD
-            order: "viewCount"
         });
-        // execute the request
+        // execute the requests
         request.execute(function(response) {
             //console.log(response);
             var results = response.result;
@@ -39,21 +24,9 @@ $(function () {
             $.each(results.items, function(index, item) {
                 $.get("startbootstrap-grayscale-gh-pages/tpl/item.html", function(data) {
                     $("#results").append(tplawesome(data, [{ "title": item.snippet.title, "videoid": item.id.videoId }]));
-                });
-=======
-        });
-        // execute the requests
-        request.execute(function (response) {
-            //console.log(response);
-            var results = response.result;
-            //$("#results").html("");
-            $.each(results.items, function (index, item) {
-                $.get("startbootstrap-grayscale-gh-pages/tpl/item.html", function (data) {
-                    $("#results").append(tplawesome(data, [{ "title": item.snippet.title, "videoid": item.id.videoId }]));
 
                 });
 
->>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
             });
             //   $.get("tpl/item.html", function(data) {
             //       $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
@@ -66,12 +39,9 @@ $(function () {
 
     $(window).on("resize", resetVideoHeight);
 
-    $("#searchDropdown li").on("click", function () {
+    $("#searchDropdown li").on("click", function() {
 
-<<<<<<< HEAD
-=======
         $("#search").removeAttr("disabled");
->>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
         $("#addToList").removeAttr("disabled");
         searchCategory = $(this).attr("data-category");
 
@@ -79,7 +49,7 @@ $(function () {
 
     });
 
-    $(".dropdown a").on("click", function () {
+    $(".dropdown a").on("click", function() {
 
         $("button", $(this).parent().parent().parent()).html($(this).html());
 
@@ -109,89 +79,114 @@ function resetVideoHeight() {
 
 function init() {
     gapi.client.setApiKey("AIzaSyA388q_XO6_LZrxMTfw41reoBplb--6tds");
-    gapi.client.load("youtube", "v3", function () {
+    gapi.client.load("youtube", "v3", function() {
         // yt api is ready
     });
-}
+};
+
+$(document).ready(function() {
+    $("#addToList").click(function() {
+        event.preventDefault();
+        console.log("wishlist button fired");
+        //mediaInput is placeholder for OMBD object
+        var newMedia = {
+            Title: $("#mediaInput").val().trim(),
+            Rating: $("#mediaInput").val().trim(),
+            Genre: $("#mediaInput").val().trim(),
+            Media: $("#mediaInput").val().trim()
+        };
+
+        console.log(newMedia);
+        $.ajax("/media/add", { //route error 500
+            type: "POST",
+            data: newMedia
+        }).then(
+            function() {
+                console.log("added to wishlist table");
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+});
+
+//below doesn't work; adding to code above this comment
 
 
-<<<<<<< HEAD
 
 
 $(function() {
 
-            $("#wishList").on("submit", function(event) {
-                // Make sure to preventDefault on a submit event.
-                event.preventDefault();
+    $("#wishList").on("submit", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
 
-                var newMedia = {
-                    Title: $("#").val().trim(),
-                    Rating: $("#").val().trim(),
-                    Genre: $("#").val().trim(),
-                    Media: $("#").val().trim()
-                };
+        var newMedia = {
+            Title: $("#").val().trim(),
+            Rating: $("#").val().trim(),
+            Genre: $("#").val().trim(),
+            Media: $("#").val().trim()
+        };
 
-                // Send the POST request.
-                $.ajax("/media/add", {
-                    type: "POST",
-                    data: newMedia
-                }).then(
-                    function() {
-                        console.log("added to wishlist table");
-                        // Reload the page to get the updated list
-                        location.reload();
-                    }
-                );
-            });
+        // Send the POST request.
+        $.ajax("/media/add", {
+            type: "POST",
+            data: newMedia
+        }).then(
+            function() {
+                console.log("added to wishlist table");
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
 
-            $("#addToViewed").on("submit", function(event) {
-                // Make sure to preventDefault on a submit event.
-                event.preventDefault();
+    $("#addToViewed").on("submit", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
 
-                var newMedia = {
-                    Title: $("#").val().trim(),
-                    Rating: $("#").val().trim(),
-                    Genre: $("#").val().trim(),
-                    Media: $("#").val().trim()
-                };
+        var newMedia = {
+            Title: $("#").val().trim(),
+            Rating: $("#").val().trim(),
+            Genre: $("#").val().trim(),
+            Media: $("#").val().trim()
+        };
 
-                // Send the POST request.
-                $.ajax("/media/:id/move", {
-                    type: "POST",
-                    data: newMedia
-                }).then(
-                    function() {
-                        console.log("added to viewed table");
-                        // Reload the page to get the updated list
-                        location.reload();
-                    }
-                );
-            });
+        // Send the POST request.
+        $.ajax("/media/:id/move", {
+            type: "POST",
+            data: newMedia
+        }).then(
+            function() {
+                console.log("added to viewed table");
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
 
-            $("#deleted-section").on("submit", function(event) {
-                // Make sure to preventDefault on a submit event.
-                event.preventDefault();
+    $("#deleted-section").on("submit", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
 
-                var newMedia = {
-                    Title: $("#").val().trim(),
-                    Rating: $("#").val().trim(),
-                    Genre: $("#").val().trim(),
-                    Media: $("#").val().trim()
-                };
+        var newMedia = {
+            Title: $("#").val().trim(),
+            Rating: $("#").val().trim(),
+            Genre: $("#").val().trim(),
+            Media: $("#").val().trim()
+        };
 
-                // Send the POST request.
-                $.ajax("/media/:id/delete", {
-                    type: "POST",
-                    data: newMedia
-                }).then(
-                    function() {
-                        console.log("deleted from wishlist table");
-                        // Reload the page to get the updated list
-                        location.reload();
-                    }
-                );
+        // Send the POST request.
+        $.ajax("/media/:id/delete", {
+            type: "POST",
+            data: newMedia
+        }).then(
+            function() {
+                console.log("deleted from wishlist table");
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
 
-            });
-        }
-=======
->>>>>>> 25a3b44b134bca567c8b728d9a301aab1cac36b9
+    });
+});
