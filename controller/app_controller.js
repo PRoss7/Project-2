@@ -32,11 +32,10 @@ module.exports = function(app) {
 
 
     app.post("/search", function(req, res) {
-        MovieDB.searchMovie({ query: req.body.search }, (err, response) => {                    
-            if (err){
+        MovieDB.searchMovie({ query: req.body.search }, (err, response) => {
+            if (err) {
                 console.log(err)
-            }else{
-
+            } else {
                 res.status(200).json(response.results[0]);
 
                 /*
@@ -44,12 +43,10 @@ module.exports = function(app) {
                 Title:   ${response.results[0].original_title}
                 Overview:  ${response.results[0].overview}
                 Date: ${response.results[0].release_date}`);
-                */              
-            }                  
-
+                */
+            }
         });
     });
-
 
     app.post("/media/:id/move", function(req, res) {
         console.log("id to move " + req.params.id)
@@ -61,8 +58,11 @@ module.exports = function(app) {
         })
     })
 
-    app.post("/media/:id/move", function(req, res) {
-        console.log("id to move " + req.params.id)
+
+    app.post("/media/:id/delete", function(req, res) {
+        console.log("id to delete " + req.params.id)
+
+
 
         models.deleteMedia(req.params.id, function() {
 

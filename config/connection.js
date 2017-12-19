@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
     database: "media_trailerdb"
 });
 
-connection.connect(function (err) {
+connection.connect(function(err) {
 
     if (err) {
         console.log("error connecting: " + err.stack);
