@@ -1,4 +1,4 @@
-# Project-2
+# Media Master
 
   ![Website Preview](public/screenshot.png "description")
 
